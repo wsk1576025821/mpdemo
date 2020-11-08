@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <!-- <div class="btn" @click="handleClick">click me</div> -->
-    111
+    <div class="btn" @click="handleClick">click me</div>
+    <i-button type="primary">222</i-button>
   </div>
 </template>
 
