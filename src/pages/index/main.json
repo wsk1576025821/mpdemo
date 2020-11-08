@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "查看启动日志",
+  "navigationBarTitleText": "测试选择文件",
   "usingComponents": {
     "i-button": "/static/iview/button/index"
   }
