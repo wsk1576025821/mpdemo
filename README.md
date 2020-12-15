@@ -39,6 +39,8 @@ npm install -D node-sass sass-loader
 # 打开微信开发者工具，新建项目，将目录指向 /dist/wx 即可
 
 # 生成 bundle 分析报告
+
+# 微信小程序appid:   wxb1c40b6ee9f8a887
 npm run build --report
 ```
 

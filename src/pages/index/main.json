@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "测试选择文件",
   "usingComponents": {
-    "i-button": "/static/iview/button/index"
+    "van-button": "../../static/vant-weapp/dist/button/index",
+    "van-tab": "../../static/vant-weapp/dist/tab/index",
+    "van-tabs": "../../static/vant-weapp/dist/tabs/index"
   }
 }
