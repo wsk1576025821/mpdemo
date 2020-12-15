@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
+  <div class="container-box" v-if="show">
     <van-tabs v-model="active" @change="onChange">
-      <van-tab title="标签 1">内容 1</van-tab>
-      <van-tab title="标签 2">内容 2</van-tab>
-      <van-tab title="标签 3">内容 3</van-tab>
-      <van-tab title="标签 4">内容 4</van-tab>
+      <van-tab title="微信备份">
+        <wxbf />
+      </van-tab>
+      <van-tab title="影集">内容 2</van-tab>
+      <van-tab title="我的">内容 3</van-tab>
     </van-tabs>
-    <van-button type="primary">测试按钮</van-button>
     <!-- <Tabs value="name1">
         <TabPane label="标签一" name="name1">标签一的内容</TabPane>
         <TabPane label="标签二" name="name2">标签二的内容</TabPane>
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import wxbf from '../wxbf';
 export default {
   data () {
     return {
@@ -40,17 +41,21 @@ export default {
       serviceList: [],
       resolveFailList: [],
       active: 1,
+      show: true  
     }
   },
 
   components: {
+    wxbf
   },
-
+  onReachBottom(){
+      console.log('到底了')
+  },
   methods: {
     onChange(event) {
       console.log(event);
       wx.showToast({
-        title: `切换到标签 ${event.detail.name}`,
+        title: `切换到标签 ${event.mp.detail.name}`,
         icon: 'none',
       });
     },
@@ -260,7 +265,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container{
-  background: #ccc;
+.container-box{
+
 }
 </style>
