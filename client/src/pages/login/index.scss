@@ -1,0 +1,112 @@
+.login-container{
+    padding: 60px 32px 24px;
+    .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 60px;
+        .item{
+            display: flex;
+            align-items: center;
+            height: 52px;
+            .left{
+                height: 100%;
+                width: 52px;
+                background: #EEEEF0;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .num{
+                    font-size: 28px;
+                    font-weight: 500;
+                    color: #A0A2B4;
+                }
+            }
+            .right{
+                margin-left: 8px;
+                height: 100%;
+                .txt{
+                    font-size: 24px;
+                    font-weight: 500;
+                    color: #A0A2B4;
+                }
+            }   
+        }
+    }
+    .content{
+        .at-form {
+            background: #F7F8FA;
+            .at-input {
+                background: #FFFFFF;
+                border-radius: 16px;
+                margin-bottom: 48px;
+                margin-left: 0;
+                padding-left: 28px;
+                .at-input__title{
+                    width: 96px;
+                    padding-right: 12px;
+                    border-right: 1px solid #EEEEF0;
+                }
+            }
+            .obtain-btn{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 160px;
+                height: 64px;
+                background: #FF6836;
+                border-radius: 16px;
+                font-size: 28px;
+                font-weight: 400;
+                color: #fff;
+                margin-right: 32px;
+                &.disabled{
+                    background: #CFD0D9;
+                }
+            }
+            .binding-btn{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 48px;
+                height: 80px;
+                background: #FF6836;
+                color: #fff;
+                border-radius: 16px;
+                font-size: 28px;
+                font-weight: 500;
+                &.disabled{
+                    background: #EEEEF0;
+                    color: #1A2734;
+                }
+            }
+            .wxauthsign-btn{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 80px;
+                background: #07C160;
+                border-radius: 16px;
+                font-size: 28px;
+                font-weight: 500;
+                color: #fff;
+            }
+        }
+    }
+    .footer{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 24px;
+        font-size: 20px;
+        font-weight: 500;
+        color: #A0A2B4;
+        .agreement{
+            color: #FF6836;
+            cursor: pointer;
+        }
+    }
+}

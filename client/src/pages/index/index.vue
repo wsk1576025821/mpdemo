@@ -1,12 +1,17 @@
 <template>
-  <view className='index'>
-    <Login />
+  <view class='index-container'>
+    <!-- <Login />
     <AtTag>标签</AtTag>
     <AtIcon value="clock" color="#F00"></AtIcon>
     <AtButton type='primary' :onClick="handleClick">点击</AtButton>
     <AtList>
       <AtListItem v-for="(item, index) in list" :key="index" :title='item.name' :thumb="item.path" :note="item.size + ''" :extraText="item.time + '' " />
-    </AtList>
+    </AtList> -->
+    <!-- <view class="iconfont">&#xe6a6;</view> -->
+    <!-- <view class="icon iconfont icon-yinyue"></view> -->
+    <Header @click="handleClickHeader" />
+    <List :list="list" :noMore="noMore" />
+    <Fab @click="handleClickFab" />
   </view>
 </template>
 
@@ -14,6 +19,10 @@
 import './index.scss';
 import Login from '../../components/login/index.weapp';
 import { AtTag, AtIcon, AtButton, AtList, AtListItem } from 'taro-ui-vue';
+import Taro from '@tarojs/taro';
+import Header from './child/header';
+import List from './child/list';
+import Fab from './child/fab';
 
 export default {
   name: 'Index',
@@ -23,14 +32,126 @@ export default {
     AtIcon,
     AtButton,
     AtList,
-    AtListItem
+    AtListItem,
+    Header,
+    List,
+    Fab
   },
   data(){
     return{
+      noMore: false,
       list: []
     }
   },
+  mounted(){
+    Taro.showLoading({
+      title: '加载中',
+      mask: true 
+    });
+    setTimeout(() => {
+      this.init();
+      Taro.hideLoading();
+    }, 500)
+  },
+  // 上拉加载
+  onReachBottom(){
+    console.log('onReachBottom');
+    if (this.noMore){
+      return false;
+    }
+    Taro.showLoading({
+      title: "加载中...",
+      mask: true
+    });
+    setTimeout(() => {
+      // this.list = this.list.concat(this.buildData());
+      // if (this.list.length > 20){
+      //   this.noMore = true;
+      // }
+      Taro.hideLoading();
+    }, 1000)
+  },
+  // 下拉刷新
+  onPullDownRefresh(){
+    console.log('onPullDownRefresh');
+    setTimeout(() => {
+      this.init();
+      Taro.stopPullDownRefresh();
+    }, 1000);
+  },
   methods: {
+    // 初始化
+    init(){
+      this.list = [];
+      // this.list = [
+      //   {
+      //     src: require('../../resource/logo.png'),
+      //     title: '卡通.JPG',
+      //     time: '1608994578861',
+      //     size: '2252800'
+      //   },
+      //   {
+      //     src: require('../../resource/logo.png'),
+      //     title: '玩偶.JPG',
+      //     time: '1608994578861',
+      //     size: '2252800'
+      //   },
+      //   {
+      //     src: require('../../resource/logo.png'),
+      //     title: '大叔.JPG',
+      //     time: '1608994578861',
+      //     size: '2252800'
+      //   },
+      //   {
+      //     src: require('../../resource/logo.png'),
+      //     title: '叔叔.JPG',
+      //     time: '1608994578861',
+      //     size: '2252800'
+      //   },
+      //   {
+      //     src: require('../../resource/logo.png'),
+      //     title: '卡通.JPG',
+      //     time: '1608994578861',
+      //     size: '2252800'
+      //   },
+      //   {
+      //     src: require('../../resource/logo.png'),
+      //     title: '玩偶.JPG',
+      //     time: '1608994578861',
+      //     size: '2252800'
+      //   },
+      //   {
+      //     src: require('../../resource/logo.png'),
+      //     title: '大叔.JPG',
+      //     time: '1608994578861',
+      //     size: '2252800'
+      //   },
+      //   {
+      //     src: require('../../resource/logo.png'),
+      //     title: '叔叔.JPG',
+      //     time: '1608994578861',
+      //     size: '2252800'
+      //   },
+      //   {
+      //     src: require('../../resource/logo.png'),
+      //     title: '卡通.JPG',
+      //     time: '1608994578861',
+      //     size: '2252800'
+      //   },
+      //   {
+      //     src: require('../../resource/logo.png'),
+      //     title: '玩偶.JPG',
+      //     time: '1608994578861',
+      //     size: '2252800'
+      //   },
+      //   {
+      //     src: require('../../resource/logo.png'),
+      //     title: '大叔.JPG',
+      //     time: '1608994578861',
+      //     size: '2252800'
+      //   }
+      // ];
+    },
     handleClick () {
       let vm = this;
       wx.chooseMessageFile({
@@ -41,7 +162,8 @@ export default {
               // tempFilePath可以作为img标签的src属性显示图片
               const tempFilePaths = res.tempFiles;
               console.log(tempFilePaths);
-              vm.list = tempFilePaths;
+              vm.list = vm.list.concat(tempFilePaths);
+              console.log(vm.list);
           },
           fail(err){
               console.log(err);
@@ -50,6 +172,44 @@ export default {
               console.log(res);
           }
       })
+    },
+    // 点击头部header
+    handleClickHeader(){
+      console.log('header');
+    },
+    // 点击添加按钮
+    handleClickFab(){
+      // console.log('add');
+      this.handleClick();
+    },
+    buildData(offset = 0){
+      let arr = [
+        {
+          src: require('../../resource/logo.png'),
+          title: '卡通.JPG',
+          time: '1608994578861',
+          size: '2252800'
+        },
+        {
+          src: require('../../resource/logo.png'),
+          title: '玩偶.JPG',
+          time: '1608994578861',
+          size: '2252800'
+        },
+        {
+          src: require('../../resource/logo.png'),
+          title: '大叔.JPG',
+          time: '1608994578861',
+          size: '2252800'
+        },
+        {
+          src: require('../../resource/logo.png'),
+          title: '叔叔.JPG',
+          time: '1608994578861',
+          size: '2252800'
+        },
+      ];
+      return arr;
     }
   }
 }
