@@ -1,0 +1,32 @@
+.cloud-box{
+    margin: 22px 32px 40px;
+    height: 180px;
+    box-sizing: border-box;
+    background: linear-gradient(138deg, #3681FF 0%, #66B7FF 100%);
+    box-shadow: 0px 8px 16px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+    padding: 30px 32px 66px;
+    .top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 36px;
+        .left{
+            height: 34px;
+            font-size: 24px;
+            font-weight: 500;
+            color: #F7F8FA;
+        }
+        .right{
+            height: 28px;
+            font-size: 24px;
+            font-weight: 400;
+            color: #F7F8FA;
+        }
+    }
+    .bottom{
+        .at-progress__outer-inner{
+            background: rgba(255, 255, 255, 0.2);;
+        }
+    }
+}
