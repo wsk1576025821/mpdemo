@@ -28,6 +28,11 @@
         <view class="empty-list" v-else>
             <view class="empty-img">
                 <image class="img" :src="emptyImg" />
+                <view class="empty-txt">
+                    点击
+                    <text class="icon iconfont icon-zengjia-copy"></text>
+                    选择群聊文件进行备份
+                </view>
             </view>
         </view>
         <!-- noMore -->

@@ -1,0 +1,121 @@
+.cloud-list-container{
+    .list{
+        .item{
+            height: 144px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 32px 24px 60px;
+            .left{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                .img-box{
+                    width: 96px;
+                    height: 96px;
+                    flex-shrink: 0;
+                    .img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .content{
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 16px;
+                    .top{
+                        display: flex;
+                        align-items: center;
+                        .title{
+                            font-size: 34px;
+                            font-weight: 400;
+                            color: rgba(0, 0, 0, 0.9);
+                        }
+                        .state{
+                            margin-left: 8px;
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 50%;
+                            flex-shrink: 0;
+                            &.success{
+                                background: #44D7B6;
+                            }
+                            &.error{
+                                background: #EF4F24;
+                            }
+                        }
+                    }
+                    .bottom{
+                        margin-top: 8px;
+                        .desc{
+                            font-size: 20px;
+                            font-weight: 400;
+                            color: #A0A2B4;
+                        }
+                        .ip{
+                            font-size: 20px;
+                            font-weight: 400;
+                            color: #A0A2B4;
+                            margin-left: 32px;
+                        }
+                    }
+                }
+            }
+            .right{
+                margin-left: 16px;
+                width: 130px;
+                height: 48px;
+                background: #FF6836;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #FF6836;
+                border-radius: 24px;
+                border: 2px solid #FFFFFF;                
+                font-size: 24px;
+                font-weight: 500;
+                color: #FFFFFF;
+            }
+        }
+    }
+    .empty-list{
+        width: 400px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 174px auto 0;
+        .empty-img{
+            width: 100%;
+            height: 100%;
+            .img{
+                width: 100%;
+                height: 100%;
+            }
+            .empty-txt{
+                height: 46px;
+                font-size: 28px;
+                font-weight: bold;
+                color: #000000;
+                text-align: center;
+                color: #999;
+                .icon-zengjia-copy{
+                    font-size: 32px;
+                    color: #FF461C;
+                }
+            }
+        }
+    }
+    .no-more{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .txt{
+            color: #999;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+    }
+}

@@ -66,6 +66,17 @@
                 width: 100%;
                 height: 100%;
             }
+            .empty-txt{
+                height: 46px;
+                font-size: 28px;
+                font-weight: bold;
+                color: #000000;
+                text-align: center;
+                .icon-zengjia-copy{
+                    font-size: 32px;
+                    color: #FF461C;
+                }
+            }
         }
     }
     .no-more{
