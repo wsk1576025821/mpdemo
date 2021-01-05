@@ -79,6 +79,7 @@
         checkMobile,
         checkSmsCaptcha
     } from "../../utils/common";
+    import { dispatchRegist, dispatchResetUserInfo, dispatchLogin } from "../../actions/common";
     let maxCount = 6, defSendBtnTxt = '获取';
     export default {
         name: 'Login',
