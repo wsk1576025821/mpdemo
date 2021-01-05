@@ -9,11 +9,9 @@ const tabBarList = [
   "pages/bbs/index/index",
   "pages/wode/index"
 ];
-// console.log(tabBarList);
 
 const showToast = (content, isTips = true) => {
   if (isTips) {
-    // this.$toast(errorMsg.MOBILE_NULL);
     Taro.showToast({
       title: content,
       icon: "none"

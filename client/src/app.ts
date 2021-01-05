@@ -40,6 +40,7 @@ const App = new Vue({
       },
       fail: () => {
         console.log('检查session失败');
+        console.log(store);
         dispatchLogin(this, store.dispatch).finally(()=> {
           Taro.hideLoading();
         })

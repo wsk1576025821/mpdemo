@@ -3,7 +3,7 @@ import {
   configStore
 } from "../configStore/index";
 
-import { STORAGE_USERINFO_KEY } from "../constants";
+import { STORAGE_USERINFO_KEY } from "../store/mutation-type";
 
 import {
   formatTime,
@@ -133,14 +133,14 @@ export function fetch(
             if (curPath) {
               if (isRedirect) {
                 redirectTo({
-                  url: "/pages/login_choose/index",
+                  url: "/pages/login/index",
                   query: {
                     next: `${curPath}?${objToUrl(that.$router.params)}`,
                     sourceCode: conf.sourceCode
                   }
                 });
               } else {
-                navigateTo("/pages/login_choose/index", {
+                navigateTo("/pages/login/index", {
                   next: `${curPath}?${objToUrl(that.$router.params)}`,
                   sourceCode: conf.sourceCode
                 });
@@ -189,7 +189,7 @@ export function fetchFile(url, options, that, isAdvertisement) {
             let curPath = that.$router.path || ($router && $router.path);
             if (curPath) {
               redirectTo({
-                url: "/pages/login_choose/index",
+                url: "/pages/login/index",
                 query: {
                   next: `${curPath}?${objToUrl(that.$router.params)}`
                 }

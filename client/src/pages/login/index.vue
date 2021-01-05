@@ -193,7 +193,7 @@
                             let next = this.$router.params.next;
                             let { params } = this.$router;
                             redirectTo({
-                                url: next || "/pages/user/index",
+                                url: next || "/pages/my/index",
                                 query: params,
                                 isCloseAll: true
                             });
