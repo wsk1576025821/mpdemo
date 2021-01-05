@@ -73,9 +73,7 @@
             // 点击选择云盒
             handleClickItem(index){
                 this.$store.dispatch(Types.SET_CUR_CLOUD, index);
-                Taro.reLaunch({
-                    url: '/pages/my/index'
-                })
+                Taro.navigateBack();
             }
         }
     }

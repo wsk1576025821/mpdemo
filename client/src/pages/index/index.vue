@@ -10,6 +10,7 @@
     <!-- <view class="iconfont">&#xe6a6;</view> -->
     <!-- <view class="icon iconfont icon-yinyue"></view> -->
     <Header @click="handleClickHeader" />
+    <UploadList />
     <List :list="list" :noMore="noMore" />
     <Fab @click="handleClickFab" />
   </view>
@@ -18,11 +19,13 @@
 <script>
 import './index.scss';
 import Login from '../../components/login/index.weapp';
+import { navigateTo } from '../../utils/common';
 import { AtTag, AtIcon, AtButton, AtList, AtListItem } from 'taro-ui-vue';
 import Taro from '@tarojs/taro';
 import Header from './child/header';
 import List from './child/list';
 import Fab from './child/fab';
+import UploadList from './child/uploadList';
 
 export default {
   name: 'Index',
@@ -35,7 +38,8 @@ export default {
     AtListItem,
     Header,
     List,
-    Fab
+    Fab,
+    UploadList
   },
   data(){
     return{
@@ -175,7 +179,7 @@ export default {
     },
     // 点击头部header
     handleClickHeader(){
-      console.log('header');
+      navigateTo('/pages/cloud/list/index');
     },
     // 点击添加按钮
     handleClickFab(){

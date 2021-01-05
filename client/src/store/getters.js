@@ -4,6 +4,15 @@ const getters = {
     },
     cloudList: state => {
         return state.cloudList
+    },
+    curCloudBox: state => {
+        return state.cloudList[state.curCloud] || {};
+    },
+    uploadList: state => {
+        return state.uploadList;
+    },
+    curUploadIdx: state => {
+        return state.curUploadIdx;
     }
 }
 

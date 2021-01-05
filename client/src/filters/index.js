@@ -1,5 +1,6 @@
 // 上传时间转换: 日期转为 2017年07月07日
 export function formatTime(time) {
+    if (!time) return '';
     var myDate = new Date(time * 1000);
     var myYear = myDate.getFullYear();
     var myMonth = myDate.getMonth() + 1;

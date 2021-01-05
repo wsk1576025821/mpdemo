@@ -4,12 +4,12 @@
             <view class="avatar-img">
                 <img v-if="userInfo.avatarImg" class="avatar" :src="userInfo.avatarImg" alt="头像">
                 <view v-else class="img-box">
-                    <view class="icon iconfont icon-touxiang"></view>
+                    <view class="icon iconfont icon-touxiang1"></view>
                 </view>
             </view>
             <view class="avatar-desc">
                 <view class="nick-name">{{userInfo.username || '昵称'}}</view>
-                <view class="phone">{{userInfo.phone}}</view>
+                <view class="phone">{{userInfo.phone || '手机号'}}</view>
             </view>
         </view>
         <view class="right" v-if="userInfo.token" @tap="handleUnbund">解绑</view>

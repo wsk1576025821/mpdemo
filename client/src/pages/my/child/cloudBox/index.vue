@@ -1,12 +1,12 @@
 <template>
     <view class="cloud-box">
         <view class="top">
-            <view class="left">{{cloudList[curCloud].title}}</view>
-            <view class="right">{{cloudList[curCloud].size}}/{{cloudList[curCloud].totalSize}}</view>
+            <view class="left">{{curCloudBox.title || '- -'}}</view>
+            <view class="right">{{curCloudBox.size || '- -'}}/{{curCloudBox.totalSize || '- -'}}</view>
         </view>
         <view class="bottom">
             <AtProgress
-                :percent="cloudList[curCloud].percent"
+                :percent="curCloudBox.percent"
                 :strokeWidth="7"
                 color='rgba(255, 255, 255, 0.7)'
                 :isHidePercent="true"
@@ -28,6 +28,9 @@
                 'curCloud',
                 'cloudList'
             ]),
+            ...mapGetters([
+                'curCloudBox'
+            ])
         },
         data(){
             return{

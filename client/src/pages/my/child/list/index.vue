@@ -1,5 +1,5 @@
 <template>
-    <view class="my-list">
+    <view class="my-list" v-if="cloudList.length">
         <AtList>
             <AtListItem
                 class="item"
@@ -38,11 +38,21 @@
     import './index.scss';
     import { AtList, AtListItem, AtButton } from 'taro-ui-vue';
     import { navigateTo } from '../../../../utils/common';
+    import {mapState, mapGetters} from 'vuex';
     export default {
         components: {
             AtList,
             AtListItem,
             AtButton
+        },
+        computed:{
+            ...mapState([
+                'curCloud',
+                'cloudList'
+            ]),
+            ...mapGetters([
+                'curCloudBox'
+            ])
         },
         data(){
             return{
