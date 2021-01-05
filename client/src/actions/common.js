@@ -1,6 +1,6 @@
 // 热门话题相关
 import Taro from "@tarojs/taro";
-import * as types from "../constants";
+import * as types from "../store/mutation-type";
 import createAction from "../utils/createAction";
 
 const Base64 = require('js-base64').Base64;

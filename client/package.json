@@ -37,6 +37,7 @@
     "@tarojs/runtime": "3.0.21",
     "@tarojs/taro": "3.0.21",
     "es6-promise": "^4.2.8",
+    "js-sha1": "^0.6.0",
     "lodash": "4.17.15",
     "taro-ui-vue": "^1.0.0-beta.4",
     "vue": "^2.5.0",

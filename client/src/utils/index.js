@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-// var sha = require('js-sha1');
+var sha = require('js-sha1');
 /**
  * 时间戳转化为年 月 日 时 分 秒
  * ts: 传入时间戳
@@ -225,7 +225,7 @@ export function MakeSignature(obj) {
   return sha(str);
 }
 export default {
-  // MakeSignature,
+  MakeSignature,
   formatNumber,
   formatTime,
   getSessionid,
