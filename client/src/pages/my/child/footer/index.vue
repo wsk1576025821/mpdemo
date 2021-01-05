@@ -2,7 +2,7 @@
     <view class="my-footer">
         <AtButton
             class="btn"
-            :onClick="handleClick"
+            :onClick="handleClick.bind(this, '/pages/cloud/list/index')"
         >
             切换云盒
         </AtButton>
@@ -11,7 +11,8 @@
 
 <script>
     import './index.scss';
-    import { AtButton } from 'taro-ui-vue'
+    import { AtButton } from 'taro-ui-vue';
+    import { navigateTo } from '../../../../utils/common';
     export default {
         components:{
             AtButton
@@ -22,8 +23,8 @@
             }
         },
         methods:{
-            handleClick(){
-                console.log('切换云盒');
+            handleClick(val){
+                navigateTo(val);
             }
         }
     }

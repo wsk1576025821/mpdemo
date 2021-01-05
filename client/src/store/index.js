@@ -1,31 +1,18 @@
-import Taro from "@tarojs/taro";
-import { formatDate } from "../utils/index";
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex);
 
-let date = new Date().getTime();
-const curEnv = Taro.getEnv();
+import actions from './actions';
+import mutations from './mutations';
+import getters from './getters';
 
-export const objEnv = {
-  [Taro.ENV_TYPE.WEAPP]: {
-    site: "mpbbs",
-    event: "mpViewPage"
-  },
-  [Taro.ENV_TYPE.SWAN]: {
-    site: "bdbbs",
-    event: "bdViewPage"
-  }
-};
+const store = new Vuex.Store({
+    state: {
+        curCloud: 0
+    },
+    actions,
+    mutations,
+    getters,
+});
 
-export const store = {
-  baseURL: "https://api.51credit.com",
-  // baseURL: 'https://test0api.51credit.com',
-  // baseURL: 'https://www.easy-mock.com/mock/5b14f2454076502c5ccc9bce/wak-mp',
-  config: {
-    name: "woaika",
-    version: "2.0.11.5",
-    build: `${formatDate(date, "yyMMdd")}0273`,
-    debug: true,
-    os: "3",
-    site: objEnv[curEnv].site,
-    channel: "bd"
-  }
-};
+export default store;

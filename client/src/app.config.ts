@@ -1,8 +1,7 @@
 export default {
   pages: [
-    'pages/my/index',
     'pages/cloud/list/index',
-    
+    'pages/my/index',
     'pages/index/index',
     'pages/login/index',
     'pages/agreement/user/index',

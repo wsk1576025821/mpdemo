@@ -1,28 +1,16 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
 import Taro, { Config } from '@tarojs/taro'
 import VirtualList from '@tarojs/components/virtual-list'
+import store from './store';
 import * as filters from './filters'
 import './app.scss'
 
-Vue.use(Vuex);
 Vue.use(VirtualList)
 
 // 注册过滤器
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);
 });
-
-const store = new Vuex.Store({
-  state: {
-    thread: {}
-  },
-  mutations: {
-    setThread: (state, thread) => {
-      state.thread = { ...thread }
-    }
-  }
-})
 
 const App = new Vue({
   mounted () {

@@ -1,7 +1,7 @@
 import Taro from "@tarojs/taro";
 import {
-  store
-} from "../store/index";
+  configStore
+} from "../configStore/index";
 
 import { STORAGE_USERINFO_KEY } from "../constants";
 
@@ -24,10 +24,10 @@ let config = {
   header: {
     "content-type": "application/x-www-form-urlencoded",
     token: "", //不在这里获取是为了实时拿到登录状态
-    os: store.config.os,
-    version: store.config.version,
-    site: store.config.site,
-    channel: store.config.channel,
+    os: configStore.config.os,
+    version: configStore.config.version,
+    site: configStore.config.site,
+    channel: configStore.config.channel,
     "x-wak-t": "", // 时间戳s
     "x-wak-s": "" // 签名
   },
@@ -109,7 +109,7 @@ export function fetch(
   if (url.indexOf("http") !== -1) {
     thisurl = url;
   } else {
-    thisurl = store.baseURL + url;
+    thisurl = configStore.baseURL + url;
   }
 
   return new Promise((resolve, reject) => {
@@ -167,7 +167,7 @@ export function fetchFile(url, options, that, isAdvertisement) {
   if (url.indexOf("http") !== -1) {
     thisurl = url;
   } else {
-    thisurl = store.baseURL + url;
+    thisurl = configStore.baseURL + url;
   }
 
   return new Promise((resolve, reject) => {
@@ -263,7 +263,7 @@ export function sendLog(event, eventvalue = {}, type) {
   obj["add_time"] = formatTime(now);
   obj["add_date"] = formatTime(now).substr(0, 10);
   // TODO: 后续提供初始化配置项
-  obj["site"] = store.config.site;
+  obj["site"] = configStore.config.site;
   obj["sessionid"] = getSessionid() || "";
   obj["userid"] = (userInfo && userInfo.userId) || userInfo.uid || "";
   obj["openid"] = (userInfo && userInfo.openid) || "";
@@ -306,9 +306,9 @@ export function sendLog(event, eventvalue = {}, type) {
   }
 }
 export const clickLog = (event, eventvalue, type)=> {
-  if (store.config.site == 'mpbbs') {
+  if (configStore.config.site == 'mpbbs') {
     return sendLog(event, eventvalue, type='weixin');
-  } else if (store.config.site == 'bdbbs') {
+  } else if (configStore.config.site == 'bdbbs') {
     return sendLog(event, eventvalue, type='baidu');
   } 
   

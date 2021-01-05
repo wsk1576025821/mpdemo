@@ -5,6 +5,7 @@
                 class="item"
                 v-for="(item, index) in list"
                 :key="index"
+                @tap="handleClickItem(index)"
             >
                 <view class="left">
                     <view class="img-box">
@@ -24,8 +25,8 @@
                         </view>
                     </view>
                 </view>
-                <view class="right" v-if="item.status">
-                    {{item.status}}
+                <view class="right" v-if="index == curCloud">
+                    已连接
                 </view>
             </view>
         </view>
@@ -47,12 +48,20 @@
 
 <script>
     import './index.scss';
+    import Taro from "@tarojs/taro";
+    import {mapState, mapGetters} from 'vuex';
+    import * as Types from '../../../store/mutation-type';
     export default {
         props:{
             noMore: {
                 type: Boolean,
                 default: false
             }
+        },
+        computed:{
+            ...mapState([
+                'curCloud'
+            ]),
         },
         data(){
             return{
@@ -71,7 +80,7 @@
                         ip: 'FXJC_AP3(192/168.50.',
                         desc: 'HCB****1001',
                         state: '',
-                        status: '已连接',
+                        status: 1,
                         src: 'http://storage.360buyimg.com/mtd/home/32443566_635798770100444_2113947400891531264_n1533825816008.jpg',
                     },
                     {
@@ -91,6 +100,15 @@
                         status: ''
                     }
                 ]
+            }
+        },
+        methods:{
+            // 点击选择云盒
+            handleClickItem(index){
+                this.$store.dispatch(Types.SET_CUR_CLOUD, index);
+                Taro.reLaunch({
+                    url: '/pages/my/index'
+                })
             }
         }
     }
