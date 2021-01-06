@@ -10,3 +10,5 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const REGIST = "REGIST";
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
+// 删除某个正在上传的文件
+export const DEL_FILE_BY_ID = 'DEL_FILE_BY_ID';

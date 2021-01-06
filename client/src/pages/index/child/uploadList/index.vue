@@ -1,5 +1,5 @@
 <template>
-    <view class="upload-list-container">
+    <view class="upload-list-container" v-if="uploadList.length">
         <AtAccordion
             :onClick="onClick"
             :title='title'
@@ -10,7 +10,6 @@
                     class="item"
                     v-for="(item, index) in uploadList"
                     :key="index"
-                    :on-click="handleClose.bind(this, item)"
                 >
                     <view class="left">
                         <view class="img-box">
@@ -44,7 +43,7 @@
                             </view>
                         </view>
                     </view>
-                    <view class="right" :on-click="handleClose.bind(this, item)">
+                    <view class="right" @tap="handleClose(item)">
                         <view class="close-box">
                             <view class="icon iconfont icon-guanbi"></view>
                         </view>
@@ -60,6 +59,7 @@
     import { AtTag, AtIcon, AtButton, AtList, AtListItem, AtAccordion, AtProgress } from 'taro-ui-vue';
     import {mapState, mapGetters} from 'vuex';
     import { getImgByType } from '../../../../utils/utils';
+    import * as Types from '../../../../store/mutation-type';
     export default {
         components: {
             AtTag,
@@ -99,8 +99,10 @@
             },
             // 点击关闭
             handleClose(item){
+                this.$store.dispatch(Types.DEL_FILE_BY_ID, item);
+            },
+            handleClick(){
                 console.log('111');
-                console.log(item);
             }
         }
     }

@@ -7,6 +7,15 @@ const mutations = {
     // 选择云盒子
     [Type.SET_CUR_CLOUD](state, payload) {
         state.curCloud = payload;
+    },
+    // 删除某个正在上传为文件
+    [Type.DEL_FILE_BY_ID](state, payload){
+        let targetIdx = state.uploadList.findIndex((item, index) => {
+            return item.id == payload.id;
+        });
+        if (targetIdx > -1){
+           state.uploadList.splice(targetIdx, 1);
+        }
     }
 };
 

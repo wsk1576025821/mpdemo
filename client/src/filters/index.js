@@ -1,7 +1,14 @@
+import * as utils from '../utils/utils';
 // 上传时间转换: 日期转为 2017年07月07日
 export function formatTime(time) {
     if (!time) return '';
-    var myDate = new Date(time * 1000);
+    if (typeof time === 'string') {
+        time = time.toString().replace(/-/g, '/');
+    }
+    if (typeof time === 'number' && (time.toString().length) === 10) {
+        time = parseInt(time + '000');
+    }
+    var myDate = new Date(time * 1);
     var myYear = myDate.getFullYear();
     var myMonth = myDate.getMonth() + 1;
     var myDay = myDate.getDate();
@@ -12,6 +19,35 @@ export function formatTime(time) {
         myDay = "0" + myDay;
     }
     return myYear + '年' + myMonth + '月' + myDay + '日';
+}
+
+export function formatTimeMinute(time) {
+    if (!time) return '';
+    if (typeof time === 'string') {
+        time = time.toString().replace(/-/g, '/');
+    }
+    if (typeof time === 'number' && (time.toString().length) === 10) {
+        time = parseInt(time + '000');
+    }
+    var myDate = new Date(time * 1);
+    var myYear = myDate.getFullYear();
+    var myMonth = myDate.getMonth() + 1;
+    var myDay = myDate.getDate();
+    var myHour = myDate.getHours();
+    var myMinute = myDate.getMinutes();
+    if (myMonth >= 1 && myMonth <= 9) {
+        myMonth = "0" + myMonth;
+    }
+    if (myDay >= 0 && myDay <= 9) {
+        myDay = "0" + myDay;
+    }
+    if (myHour >= 0 && myHour <= 9) {
+        myHour = "0" + myHour;
+    }
+    if (myMinute >= 0 && myMinute <= 9) {
+        myMinute = "0" + myMinute;
+    }
+    return myYear + '年' + myMonth + '月' + myDay + '日' + ' ' + myHour + ':' + myMinute;
 }
 
 // 上传大小转换

@@ -39,7 +39,11 @@ const actions = {
     // 设置当前云盒
     [Type.SET_CUR_CLOUD]: ({commit, dispatch, state}, payload) => {
         commit(Type.SET_CUR_CLOUD, payload);
-    }
+    },
+    // 删除正在上传的某个文件
+    [Type.DEL_FILE_BY_ID]: ({commit, dispatch, state}, payload) => {
+      commit(Type.DEL_FILE_BY_ID, payload);
+  },
 };
 
 export default actions;

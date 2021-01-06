@@ -67,9 +67,6 @@
             handleClick(val){
                 navigateTo(val)
             },
-            handleOpenApp(val){
-                console.log('打开app')
-            },
             // 打开app
             launchAppError (e) {
                 console.log(e.detail.errMsg)

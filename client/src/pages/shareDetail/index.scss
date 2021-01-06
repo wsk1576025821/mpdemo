@@ -1,0 +1,85 @@
+.share-detail{
+    background: #F7F8FA;
+    padding: 22px 32px;
+    .header{
+        display: flex;
+        flex-direction: column;
+        padding: 26px 42px 28px 34px;
+        background: #FFFFFF;
+        border-radius: 20px;
+        .title{
+            font-size: 34px;
+            font-weight: 500;
+            color: #000000;
+            line-height: 48px;
+        }
+        .desc, .time{
+            text-align: right;
+            margin-top: 76px;
+            font-size: 24px;
+            font-weight: 400;
+            color: #4B4D5E;
+            line-height: 34px;
+        }
+        .time{
+            margin-top: 8px;
+        }
+    }
+    .list{
+        margin-top: 48px;
+        .item{
+            height: 102px;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            padding: 20px 24px 18px;
+            .left{
+                .img-box{
+                    width: 60px;
+                    height: 60px;
+                    .img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            .right{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                margin-left: 18px;
+                .top{
+                    font-size: 22px;
+                    font-weight: 400;
+                    color: #4B4D5E;
+                }
+                .bottom{
+                    font-size: 18px;
+                    font-weight: 400;
+                    color: #A0A2B4;
+                }
+            }
+        }
+    }
+    .footer{
+        position: fixed;
+        bottom: 80px;
+        left: 0;
+        width: 100%;
+        .btn{
+            height: 80px;
+            width: 686px;
+            box-sizing: border-box;
+            background: linear-gradient(90deg, #FF7A4A 0%, #FF461C 100%);
+            border-radius: 8px;
+            font-size: 28px;
+            font-weight: 400;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
