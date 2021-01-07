@@ -8,7 +8,8 @@ export default {
     'pages/login/index',
     'pages/agreement/user/index',
     'pages/agreement/privacy/index',
-    'pages/comProblem/index'
+    'pages/comProblem/index',
+    'pages/curtain/index',
   ],
   tabBar: {
     list: [{

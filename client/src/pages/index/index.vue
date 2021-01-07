@@ -1,14 +1,5 @@
 <template>
   <view class='index-container'>
-    <!-- <Login />
-    <AtTag>标签</AtTag>
-    <AtIcon value="clock" color="#F00"></AtIcon>
-    <AtButton type='primary' :onClick="handleClick">点击</AtButton>
-    <AtList>
-      <AtListItem v-for="(item, index) in list" :key="index" :title='item.name' :thumb="item.path" :note="item.size + ''" :extraText="item.time + '' " />
-    </AtList> -->
-    <!-- <view class="iconfont">&#xe6a6;</view> -->
-    <!-- <view class="icon iconfont icon-yinyue"></view> -->
     <Header @click="handleClickHeader" />
     <UploadList />
     <List :list="list" :noMore="noMore" />
@@ -87,74 +78,6 @@ export default {
     // 初始化
     init(){
       this.list = [];
-      // this.list = [
-      //   {
-      //     src: require('../../resource/logo.png'),
-      //     title: '卡通.JPG',
-      //     time: '1608994578861',
-      //     size: '2252800'
-      //   },
-      //   {
-      //     src: require('../../resource/logo.png'),
-      //     title: '玩偶.JPG',
-      //     time: '1608994578861',
-      //     size: '2252800'
-      //   },
-      //   {
-      //     src: require('../../resource/logo.png'),
-      //     title: '大叔.JPG',
-      //     time: '1608994578861',
-      //     size: '2252800'
-      //   },
-      //   {
-      //     src: require('../../resource/logo.png'),
-      //     title: '叔叔.JPG',
-      //     time: '1608994578861',
-      //     size: '2252800'
-      //   },
-      //   {
-      //     src: require('../../resource/logo.png'),
-      //     title: '卡通.JPG',
-      //     time: '1608994578861',
-      //     size: '2252800'
-      //   },
-      //   {
-      //     src: require('../../resource/logo.png'),
-      //     title: '玩偶.JPG',
-      //     time: '1608994578861',
-      //     size: '2252800'
-      //   },
-      //   {
-      //     src: require('../../resource/logo.png'),
-      //     title: '大叔.JPG',
-      //     time: '1608994578861',
-      //     size: '2252800'
-      //   },
-      //   {
-      //     src: require('../../resource/logo.png'),
-      //     title: '叔叔.JPG',
-      //     time: '1608994578861',
-      //     size: '2252800'
-      //   },
-      //   {
-      //     src: require('../../resource/logo.png'),
-      //     title: '卡通.JPG',
-      //     time: '1608994578861',
-      //     size: '2252800'
-      //   },
-      //   {
-      //     src: require('../../resource/logo.png'),
-      //     title: '玩偶.JPG',
-      //     time: '1608994578861',
-      //     size: '2252800'
-      //   },
-      //   {
-      //     src: require('../../resource/logo.png'),
-      //     title: '大叔.JPG',
-      //     time: '1608994578861',
-      //     size: '2252800'
-      //   }
-      // ];
     },
     handleClick () {
       let vm = this;
@@ -187,32 +110,7 @@ export default {
       this.handleClick();
     },
     buildData(offset = 0){
-      let arr = [
-        {
-          src: require('../../resource/logo.png'),
-          title: '卡通.JPG',
-          time: '1608994578861',
-          size: '2252800'
-        },
-        {
-          src: require('../../resource/logo.png'),
-          title: '玩偶.JPG',
-          time: '1608994578861',
-          size: '2252800'
-        },
-        {
-          src: require('../../resource/logo.png'),
-          title: '大叔.JPG',
-          time: '1608994578861',
-          size: '2252800'
-        },
-        {
-          src: require('../../resource/logo.png'),
-          title: '叔叔.JPG',
-          time: '1608994578861',
-          size: '2252800'
-        },
-      ];
+      let arr = [];
       return arr;
     }
   }
