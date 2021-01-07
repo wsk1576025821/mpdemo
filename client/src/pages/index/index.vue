@@ -78,6 +78,10 @@ export default {
       Taro.stopPullDownRefresh();
     }, 1000);
   },
+  onShow(){
+    console.error('onshow');
+    this.onLocalService()
+  },
   methods: {
     // 初始化
     init(){
@@ -125,10 +129,10 @@ export default {
       that.serviceList = []
       that.resolveFailList = []
       wx.startLocalServiceDiscovery({
-        serviceType:'_http._tcp.',
+        serviceType:'_jcbox_test._tcp.',
         success:function(res){
           console.log('start success')
-          that.onLocalService();
+          // that.onLocalService();
         },
         fail:function(err){
           console.log('start fail')
@@ -172,7 +176,7 @@ export default {
         that.serviceList.push(obj)
         console.warn(that.serviceList);
         wx.request({
-          url: ''
+          url: 'http://testapi.fxjcinfo.com'
           // 省略其他参数
         })
       })
