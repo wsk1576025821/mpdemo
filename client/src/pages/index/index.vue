@@ -3,6 +3,8 @@
     <Header @click="handleClickHeader" />
     <UploadList />
     <List :list="list" :noMore="noMore" />
+    <AtButton type='primary' :on-click="handleClickStart.bind(this, 'primary')">开始搜索</AtButton>
+    <AtButton type='danger' :on-click="handleClickStop.bind(this, 'primary')">停止搜索</AtButton>
     <Fab @click="handleClickFab" />
   </view>
 </template>
@@ -35,7 +37,9 @@ export default {
   data(){
     return{
       noMore: false,
-      list: []
+      list: [],
+      serviceList: [],
+      resolveFailList: []
     }
   },
   mounted(){
@@ -79,7 +83,7 @@ export default {
     init(){
       this.list = [];
     },
-    handleClick () {
+    chooseFile () {
       let vm = this;
       wx.chooseMessageFile({
           count: 10,
@@ -107,11 +111,128 @@ export default {
     // 点击添加按钮
     handleClickFab(){
       // console.log('add');
-      this.handleClick();
+      this.chooseFile();
     },
     buildData(offset = 0){
       let arr = [];
       return arr;
+    },
+    /**
+     * 开始搜索
+     */
+    startDiscovery:function(){
+      let that = this
+      that.serviceList = []
+      that.resolveFailList = []
+      wx.startLocalServiceDiscovery({
+        serviceType:'_http._tcp.',
+        success:function(res){
+          console.log('start success')
+          that.onLocalService();
+        },
+        fail:function(err){
+          console.log('start fail')
+          console.log(err)
+        },
+        complete:function(){
+          console.log('complete')
+        }
+      })
+    },
+    /**
+     * stopDiscovery
+     */
+    stopDiscovery:function(){
+      let that = this
+      wx.stopLocalServiceDiscovery({
+        success: function () {
+          that.showTips('停止搜索成功','success')
+          that.serviceList = []
+          that.resolveFailList = []
+          that.offLocalService();
+        },
+        fail: function () {
+          that.showTips('停止搜索失败，请重试！')
+        },
+        complete: function () {
+          console.log('stopDiscovery complete')
+        }
+      })
+    },
+    /**
+     * 监听方法合集
+     */
+    onLocalService:function(){
+      console.error('111');
+      let that = this
+      // 监听服务发现事件
+      wx.onLocalServiceFound(function (obj) {
+        console.log('监听服务发现事件')
+        console.log(obj)
+        that.serviceList.push(obj)
+        console.warn(that.serviceList);
+        wx.request({
+          url: ''
+          // 省略其他参数
+        })
+      })
+  
+      // 监听服务解析失败事件
+      wx.onLocalServiceResolveFail(function (obj){
+        console.log('监听服务解析失败事件')
+        that.resolveFailList.push(obj)
+      })
+  
+      // 监听服务离开
+      wx.onLocalServiceLost(function (obj){
+        console.log('监听服务离开')
+        that.showTips('有服务离开啦');
+        console.log(obj)
+      })
+  
+      // 监听搜索停止
+      wx.onLocalServiceDiscoveryStop(function (obj){
+        console.log('监听到搜索停止事件')
+      })
+  
+    },
+    /**
+     * 提示方法
+     */
+    showTips:function(title='出错啦',icon='none'){
+        wx.showToast({
+          title: title,
+          icon: icon,
+          duration:2000
+        })
+    },
+    /**
+     * offLocalService
+     */
+    offLocalService: function () {
+      console.log('是否执行此部分数据')
+      // 取消监听服务发现事件
+      wx.offLocalServiceFound(function () {
+        console.log('取消监听服务发现事件 成功')
+      })
+      // 取消监听服务解析失败事件
+      wx.offLocalServiceResolveFail(function () {
+        console.log('取消监听 mDNS 服务解析失败的事件 成功')
+      })
+      // 取消监听服务离开
+      wx.offLocalServiceLost(function () {
+        console.log('取消监听服务离开事件 成功')
+      })
+      // 取消监听搜索停止
+      wx.offLocalServiceDiscoveryStop(function () {
+        console.log('取消监听 mDNS 服务停止搜索的事件 成功')
+      })
+    },
+    handleClickStart(){
+      this.startDiscovery();
+    },
+    handleClickStop(){
+      this.stopDiscovery();
     }
   }
 }
