@@ -48,10 +48,14 @@
                     }
                     .bottom{
                         margin-top: 8px;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
                         .desc{
                             font-size: 20px;
                             font-weight: 400;
                             color: #A0A2B4;
+                            width: 124px;
                         }
                         .ip{
                             font-size: 20px;

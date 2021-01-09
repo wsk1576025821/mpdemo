@@ -5,3 +5,12 @@
 page{
     background: #F7F8FA;
 }
+
+.text-deal{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all; /* 追加这一行代码 */
+}

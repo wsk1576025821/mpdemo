@@ -10,8 +10,8 @@
             <view v-if="curCloudBox.state != ''" class="state" :class="{'success': curCloudBox.state == 1, 'error': curCloudBox.state == 0}"></view>
           </view>
           <view class="bottom">
-            <text class="left-desc">{{curCloudBox.desc || '- -'}}</text>
-            <text class="right-desc">{{curCloudBox.ip  || '- -'}}</text>
+            <text class="left-desc text-deal">{{curCloudBox.serviceName || '- -'}}</text>
+            <text class="right-desc text-deal">{{desc}}</text>
           </view>
         </view>
       </view>
@@ -34,7 +34,14 @@
             ]),
             ...mapGetters([
                 'curCloudBox'
-            ])
+            ]),
+            desc(){
+              if (this.curCloudBox.serviceType){
+                return this.curCloudBox.serviceType + '(' + this.curCloudBox.ip + ')';
+              } else {
+                return '- -'
+              }
+            }
         },
         data(){
             return{

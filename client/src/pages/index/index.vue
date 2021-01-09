@@ -3,8 +3,6 @@
     <Header @click="handleClickHeader" />
     <UploadList />
     <List :list="list" :noMore="noMore" />
-    <AtButton type='primary' :on-click="handleClickStart.bind(this, 'primary')">开始搜索</AtButton>
-    <AtButton type='danger' :on-click="handleClickStop.bind(this, 'primary')">停止搜索</AtButton>
     <Fab @click="handleClickFab" />
   </view>
 </template>
@@ -19,6 +17,8 @@ import Header from './child/header';
 import List from './child/list';
 import Fab from './child/fab';
 import UploadList from './child/uploadList';
+import * as Types from '../../store/mutation-type';
+import {mapState, mapGetters} from 'vuex';
 
 export default {
   name: 'Index',
@@ -33,6 +33,15 @@ export default {
     List,
     Fab,
     UploadList
+  },
+  computed:{
+      ...mapState([
+          'curCloud',
+          'cloudList'
+      ]),
+      ...mapGetters([
+          'curCloudBox'
+      ])
   },
   data(){
     return{
@@ -78,6 +87,9 @@ export default {
       Taro.stopPullDownRefresh();
     }, 1000);
   },
+  /**
+   * 生命周期函数--监听页面显示
+  */
   onShow(){
     console.error('onshow');
     this.onLocalService()
@@ -86,6 +98,9 @@ export default {
     // 初始化
     init(){
       this.list = [];
+      this.serviceList = [];
+      this.resolveFailList = [];
+      this.handleClickStart();
     },
     chooseFile () {
       let vm = this;
@@ -173,12 +188,21 @@ export default {
       wx.onLocalServiceFound(function (obj) {
         console.log('监听服务发现事件')
         console.log(obj)
-        that.serviceList.push(obj)
+        that.serviceList.push(obj);
+        that.list = that.serviceList;
+        // 设置云盒
+        that.$store.dispatch(Types.SET_CLOUD_LIST, that.serviceList);
+        // 默认设置第一个云盒为当前云盒
+        that.$store.dispatch(Types.SET_CUR_CLOUD, 0);
+        console.error(that.curCloudBox);
         console.warn(that.serviceList);
+
+        // 关闭搜索
+        that.stopDiscovery();
         wx.request({
-          url: 'http://testapi.fxjcinfo.com'
+          url: obj.ip + ':' + obj.port
           // 省略其他参数
-        })
+        });
       })
   
       // 监听服务解析失败事件
@@ -231,12 +255,6 @@ export default {
       wx.offLocalServiceDiscoveryStop(function () {
         console.log('取消监听 mDNS 服务停止搜索的事件 成功')
       })
-    },
-    handleClickStart(){
-      this.startDiscovery();
-    },
-    handleClickStop(){
-      this.stopDiscovery();
     }
   }
 }

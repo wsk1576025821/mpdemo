@@ -20,8 +20,8 @@
                             <text v-if="item.state != ''" class="state" :class="{'success': item.state == 1, 'error': item.state == 0}"></text>
                         </view>
                         <view class="bottom">
-                            <text class="desc">{{item.desc}}</text>
-                            <text class="ip">{{item.ip}}</text>
+                            <text class="desc text-deal">{{item.serviceName}}</text>
+                            <text class="ip text-deal">{{changeDesc(item)}}</text>
                         </view>
                     </view>
                 </view>
@@ -74,6 +74,10 @@
             handleClickItem(index){
                 this.$store.dispatch(Types.SET_CUR_CLOUD, index);
                 Taro.navigateBack();
+            },
+            // 改变输出内容
+            changeDesc(item){
+                return item.serviceType + '(' + item.ip + ')'  || '- -'
             }
         }
     }
