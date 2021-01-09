@@ -52,6 +52,7 @@ export default {
     }
   },
   mounted(){
+    this.onLocalService()
     Taro.showLoading({
       title: '加载中',
       mask: true 
@@ -91,8 +92,7 @@ export default {
    * 生命周期函数--监听页面显示
   */
   onShow(){
-    console.error('onshow');
-    this.onLocalService()
+    
   },
   methods: {
     // 初始化
@@ -100,7 +100,13 @@ export default {
       this.list = [];
       this.serviceList = [];
       this.resolveFailList = [];
-      this.handleClickStart();
+      // 清空store的云盒
+      // 设置云盒
+      this.$store.dispatch(Types.SET_CLOUD_LIST, this.serviceList);
+      console.error('cloudList,cloudList, cloudList', this.cloudList);
+      // 默认设置第一个云盒为当前云盒
+      this.$store.dispatch(Types.SET_CUR_CLOUD, 0);
+      this.startDiscovery();
     },
     chooseFile () {
       let vm = this;
@@ -189,7 +195,6 @@ export default {
         console.log('监听服务发现事件')
         console.log(obj)
         that.serviceList.push(obj);
-        that.list = that.serviceList;
         // 设置云盒
         that.$store.dispatch(Types.SET_CLOUD_LIST, that.serviceList);
         // 默认设置第一个云盒为当前云盒
@@ -255,7 +260,7 @@ export default {
       wx.offLocalServiceDiscoveryStop(function () {
         console.log('取消监听 mDNS 服务停止搜索的事件 成功')
       })
-    }
+    },
   }
 }
 </script>
